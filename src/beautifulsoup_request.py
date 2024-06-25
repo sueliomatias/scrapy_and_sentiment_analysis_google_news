@@ -1,7 +1,6 @@
 import requests
 import json
 from bs4 import BeautifulSoup
-import pandas as pd
 
 def getNewsData(search):
     headers = {
@@ -20,14 +19,7 @@ def getNewsData(search):
             "date": el.select_one(".OSrXXb span").get_text(),
             "source": el.select_one(".NUnG9d span").get_text()
         })
-        print(json.dumps(news_results, indent=2))
-    
+        # print(json.dumps(news_results, indent=2))
     return news_results
 
-def save_dataframe(news):
-    df = pd.DataFrame(news)
-    df.to_csv('news.csv', index=False)
-    print(df)
 
-news = getNewsData("")
-save_dataframe(news)
