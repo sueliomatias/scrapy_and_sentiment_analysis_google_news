@@ -2,12 +2,12 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-def getNewsData(search):
+def getNewsData(search, qntd=10):
     headers = {
         "User-Agent":
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36"
     }
-    response = requests.get(f"https://www.google.com/search?q={search}&gl=pt&tbm=nws&num=5", headers=headers)
+    response = requests.get(f"https://www.google.com/search?q={search}&gl=pt&tbm=nws&num={qntd}", headers=headers)
     soup = BeautifulSoup(response.content, 'html.parser')
     news_results = []
 
